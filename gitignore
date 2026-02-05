@@ -1,0 +1,9 @@
+
+bin/
+obj/
+idea/
+vscode/
+.DS_Store
+
+
+player_stats.csv
