@@ -128,9 +128,9 @@ public class StatManager
 
     private PlayerStats GetOrCreatePlayer(string name)
     {
-        if (_players.TryGetValue(name, out PlayerStats existing))
+        if (_players.ContainsKey(name))
         {
-            return existing;
+            return _players[name];
         }
 
         PlayerStats created = new PlayerStats(name);
