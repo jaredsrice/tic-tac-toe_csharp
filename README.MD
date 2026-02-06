@@ -15,8 +15,6 @@ I wrote this software with the main goal of becoming more familiar with C# synta
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-
 - [Microsoft C# Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/)
 - [Microsoft .NET File I/O Documentation](https://learn.microsoft.com/en-us/dotnet/standard/io/)
 - [w3schools C# Tutorial](https://www.w3schools.com/cs/)
