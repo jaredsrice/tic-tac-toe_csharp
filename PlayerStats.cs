@@ -6,6 +6,7 @@ public class PlayerStats
     public int Losses { get; private set; }
     public int Ties { get; private set; }
 
+    // Derived from existing stats instead of being stored separately. 
     public int GamesPlayed
     {
         get
@@ -14,6 +15,7 @@ public class PlayerStats
         }
     }
 
+    // WinRate is calculated on demand to ensure it reflects the most current stats. Also guards against division by zero.
     public double WinRate
     {
         get
@@ -43,6 +45,8 @@ public class PlayerStats
         Ties = ties;
     }
 
+
+    // Methods used to update stats while preventing direct modification from outside the class.
     public void RecordWin()
     {
         Wins++;

@@ -10,13 +10,16 @@ public class StatManager
     public StatManager(string filePath)
     {
         _filePath = filePath;
+        // Use a case-insensitive dictionary so player tags are treated the same regardless of case.
         _players = new Dictionary<string, PlayerStats>(StringComparer.OrdinalIgnoreCase);
     }
 
     public bool LoadStats()
     {
+        // Clear existing data before loading to prevent duplicates if LoadStats is called again. 
         _players.Clear();
 
+        // If file doesn't exist yet, return false so the program can start with an empty leaderboard. 
         if (!File.Exists(_filePath))
         {
             return false;
@@ -31,6 +34,7 @@ public class StatManager
                 continue;
             }
 
+            // Skips header line if it exists so it won't parse as player data. 
             if (line.StartsWith("Name,", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
@@ -38,6 +42,7 @@ public class StatManager
 
             string[] parts = line.Split(',');
 
+            // Skips malformed lines that don't have expected formatting. Prevents crashes from bad data. 
             if (parts.Length != 4)
             {
                 continue;
@@ -45,6 +50,7 @@ public class StatManager
 
             string playerName = parts[0].Trim();
 
+            // Use TryParse here to ensure invalid numeric data doesn't cause a crash. Parsing fail = line skipped. 
             if (!int.TryParse(parts[1].Trim(), out int wins))
             {
                 continue;
@@ -70,6 +76,8 @@ public class StatManager
     public void SaveStats()
     {
         List<string> lines = new List<string>();
+
+        // Writes a header to keep the CSV readable and consistent. 
         lines.Add("Name,Wins,Losses,Ties");
         
         foreach (PlayerStats player in _players.Values)
@@ -80,6 +88,7 @@ public class StatManager
         File.WriteAllLines(_filePath, lines);
     }
 
+    // Updates both player stats based on game result. 
     public void UpdateStats(string player1, string player2, GameResult result)
     {
         PlayerStats p1 = GetOrCreatePlayer(player1);
@@ -106,6 +115,7 @@ public class StatManager
     {
         List<PlayerStats> leaderboard = new List<PlayerStats>(_players.Values);
 
+        // Sorts by win rate first, then wins, then by name for stable ordering. 
         leaderboard.Sort((a, b) =>
         {
             int winRateCompare = b.WinRate.CompareTo(a.WinRate);
@@ -126,6 +136,7 @@ public class StatManager
         return leaderboard;
     }
 
+    // Helper method to retrieve an existing player record or create a new one if a tag doesn't exist. 
     private PlayerStats GetOrCreatePlayer(string name)
     {
         if (_players.ContainsKey(name))
