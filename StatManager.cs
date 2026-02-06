@@ -115,21 +115,28 @@ public class StatManager
     {
         List<PlayerStats> leaderboard = new List<PlayerStats>(_players.Values);
 
-        // Sorts by win rate first, then wins, then by name for stable ordering. 
         leaderboard.Sort((a, b) =>
         {
-            int winRateCompare = b.WinRate.CompareTo(a.WinRate);
-            if (winRateCompare != 0)
-            {
-                return winRateCompare;
-            }
-
+            // Sort players by wins first, then by ratio of win points to games played. 
             int winsCompare = b.Wins.CompareTo(a.Wins);
             if (winsCompare != 0)
             {
                 return winsCompare;
             }
 
+            double aPoints = a.Wins + (0.5 * a.Ties);
+            double bPoints = b.Wins + (0.5 * b.Ties);
+
+            double aRatio = (a.GamesPlayed == 0) ? 0.0 : aPoints / a.GamesPlayed;
+            double bRatio = (b.GamesPlayed == 0) ? 0.0 : bPoints / b.GamesPlayed;
+
+            int ratioCompare = bRatio.CompareTo(aRatio);
+            if (ratioCompare != 0)
+            {
+                return ratioCompare;
+            }
+
+            
             return string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase);
         });
 
