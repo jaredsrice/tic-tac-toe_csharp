@@ -26,3 +26,7 @@ I wrote this software with the main goal of becoming more familiar with C# synta
 
 - Implement a GUI to replace the console-based interface. 
 - Add a single-player mode. 
+
+# AI Disclosure
+
+- I used ChatGPT as a learning and reference tool throughout this project to help think through design approaches, clarify C# syntax, and review pseudocode ideas. I primarily used AI to expand my understanding of language syntax and available constructs, while ensuring all final code reflects my own understanding.
