@@ -4,14 +4,13 @@ I developed a C# console-based Tic-Tac-Toe game that allows two players to play 
 
 I wrote this software with the main goal of becoming more familiar with C# syntax and furthering my understanding of object-oriented programming. Through this project, I became more comfortable with the language’s structure and with organizing code by dividing responsibilities across multiple classes.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/UalnM6cHUPg)
 
 # Development Environment
 
 - Visual Studio Code
 - .NET SDK
 - Git / Github
-
 
 # Useful Websites
 

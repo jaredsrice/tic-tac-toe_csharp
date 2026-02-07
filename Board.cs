@@ -61,23 +61,31 @@ public class Board
     {
         for (int i = 0; i < 3; i++)
         {
-            if (_grid[i, 0] == symbol && _grid[i, 1] == symbol && _grid[i, 2] == symbol)
+            if (_grid[i, 0] == symbol && 
+                _grid[i, 1] == symbol && 
+                _grid[i, 2] == symbol)
             {
                 return true;
             }
 
-            if (_grid[0, i] == symbol && _grid[1, i] == symbol && _grid[2, i] == symbol)
+            if (_grid[0, i] == symbol && 
+                _grid[1, i] == symbol && 
+                _grid[2, i] == symbol)
             {
                 return true;
             }
         }
 
-        if (_grid[0, 0] == symbol && _grid[1, 1] == symbol && _grid[2, 2] == symbol)
+        if (_grid[0, 0] == symbol && 
+            _grid[1, 1] == symbol && 
+            _grid[2, 2] == symbol)
         {
             return true;
         }
 
-        if (_grid[0, 2] == symbol && _grid[1, 1] == symbol && _grid[2, 0] == symbol)
+        if (_grid[0, 2] == symbol && 
+            _grid[1, 1] == symbol && 
+            _grid[2, 0] == symbol)
         {
             return true;
         }
